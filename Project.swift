@@ -2,6 +2,10 @@ import ProjectDescription
 
 let project = Project(
   name: "TuistTest",
+  packages: [
+    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.5"),
+    .package(url: "https://github.com/stripe/stripe-ios-spm", from: "23.27.3")
+  ],
   targets: [
     .target(
       name: "TuistTest",
@@ -29,7 +33,9 @@ let project = Project(
       bundleId: "co.rhysmorgan.TuistTest.sharedUI",
       sources: ["SharedUI/Sources/**"],
       dependencies: [
-        .package(product: "Stripe")
+//        .external(name: "Stripe"),
+//        .external(name: "StripePaymentsUI"),
+        .package(product: "Stripe"),
       ]
     ),
     .target(
@@ -60,6 +66,7 @@ let project = Project(
       sources: ["Payments/Tests/**"],
       dependencies: [
         .target(name: "Payments"),
+//        .external(name: "SnapshotTesting")
         .package(product: "SnapshotTesting")
       ]
     ),
